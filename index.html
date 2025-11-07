@@ -29,22 +29,25 @@ button:hover{background:#004080}
 </style>
 <script>
 const code="4691F82655677";
-async function copyAndGo(){
+async function copyCode(){
   try{
     await navigator.clipboard.writeText(code);
     document.getElementById("status").textContent="✅ Code copied to clipboard!";
   }catch{
     document.getElementById("status").textContent="⚠️ Copy not supported, please copy manually.";
   }
-  window.location.href="https://www.raiseright.com/enroll";
 }
-window.addEventListener("load",async()=>{
-  try{
-    await navigator.clipboard.writeText(code);
-    document.getElementById("status").textContent="✅ Code copied to clipboard!";
-  }catch{
-    document.getElementById("status").textContent="⚠️ Copy not supported, please copy manually.";
-  }
+
+// Chrome requires a click for clipboard access
+async function proceed(){
+  await copyCode();
+  document.getElementById("status").textContent+=" Redirecting in 2 seconds…";
+  setTimeout(()=>{window.location.href="https://www.raiseright.com/enroll";},2000);
+}
+
+window.addEventListener("load",()=>{
+  // Try automatic copy for browsers that allow it (Safari/iOS)
+  copyCode();
 });
 </script>
 </head>
@@ -53,7 +56,7 @@ window.addEventListener("load",async()=>{
   <h1>Sign Up for RaiseRight</h1>
   <p>Use the Hatch PTO enrollment code <code>4691F82655677</code>.</p>
   <p id="status">Attempting to copy code to clipboard…</p>
-  <button onclick="copyAndGo()">Continue to RaiseRight →</button>
+  <button onclick="proceed()">Continue to RaiseRight →</button>
 </div>
 </body>
 </html>
