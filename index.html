@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting to RaiseRight...</title>
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      color: #003366;
+    }
+    .box {
+      background: white;
+      padding: 2rem 2.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+    }
+  </style>
+
+  <script>
+    // Automatically redirect to RaiseRight and fill the code
+    window.onload = () => {
+      const target = "https://www.raiseright.com/enroll";
+      window.location.href = target;
+
+      // Wait for field to appear and fill it in
+      const interval = setInterval(() => {
+        try {
+          const field = document.querySelector('input[name="enrollmntCode"], input#field_3');
+          if (field) {
+            field.value = "4691F82655677";
+            field.dispatchEvent(new Event("input", { bubbles: true }));
+            clearInterval(interval);
+            console.log("✅ Hatch PTO enrollment code prefilled!");
+          }
+        } catch {}
+      }, 700);
+    };
+  </script>
+</head>
+<body>
+  <div class="box">
+    <h1>Redirecting you to RaiseRight…</h1>
+    <p>Your Hatch PTO enrollment code will be filled in automatically.</p>
+    <p><em>If it doesn’t redirect, <a href="https://www.raiseright.com/enroll">click here</a>.</em></p>
+  </div>
+</body>
+</html>
