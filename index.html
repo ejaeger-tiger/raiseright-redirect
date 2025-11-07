@@ -32,18 +32,36 @@
       font-weight: 600;
       color: #003366;
     }
+    button {
+      margin-top: 0.8rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background: #003366;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background: #004080; }
   </style>
   <script>
     const code = "4691F82655677";
-    window.addEventListener("load", async () => {
+
+    async function copyCode() {
       try {
         await navigator.clipboard.writeText(code);
-        console.log("✅ Copied code to clipboard");
+        document.getElementById("status").textContent = "✅ Code copied!";
       } catch {
-        console.warn("Clipboard copy not supported");
+        document.getElementById("status").textContent = "⚠️ Copy not supported. Please copy manually.";
       }
+    }
 
-      const redirectDelay = 2000; // 2 seconds
+    window.addEventListener("load", async () => {
+      // Try automatic copy first
+      await copyCode();
+
+      // Delay redirect so user can read and clipboard can finish
+      const redirectDelay = 3500; // 3.5 seconds
       setTimeout(() => {
         window.location.href = "https://www.raiseright.com/enroll";
       }, redirectDelay);
@@ -53,7 +71,9 @@
 <body>
   <div class="box">
     <h1>Redirecting you to RaiseRight…</h1>
-    <p>Your Hatch PTO enrollment code <code>4691F82655677</code> has been copied to your clipboard.</p>
+    <p>Your Hatch PTO enrollment code is <code id="thecode">4691F82655677</code>.</p>
+    <p id="status">Attempting to copy to clipboard…</p>
+    <button onclick="copyCode()">Copy Code Again</button>
     <p>If you are not redirected automatically, <a href="https://www.raiseright.com/enroll">click here</a>.</p>
   </div>
 </body>
