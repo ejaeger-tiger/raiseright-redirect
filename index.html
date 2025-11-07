@@ -1,80 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirecting to RaiseRight…</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      background: #f6f8fb;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-      color: #003366;
-    }
-    .box {
-      background: #fff;
-      padding: 2rem 2.5rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-      max-width: 420px;
-    }
-    h1 { font-size: 1.4rem; margin-bottom: 0.75rem; }
-    p  { margin: 0.5rem 0; font-size: 1rem; }
-    code {
-      background: #eef3fa;
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-      font-weight: 600;
-      color: #003366;
-    }
-    button {
-      margin-top: 0.8rem;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      background: #003366;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover { background: #004080; }
-  </style>
-  <script>
-    const code = "4691F82655677";
-
-    async function copyCode() {
-      try {
-        await navigator.clipboard.writeText(code);
-        document.getElementById("status").textContent = "✅ Code copied!";
-      } catch {
-        document.getElementById("status").textContent = "⚠️ Copy not supported. Please copy manually.";
-      }
-    }
-
-    window.addEventListener("load", async () => {
-      // Try automatic copy first
-      await copyCode();
-
-      // Delay redirect so user can read and clipboard can finish
-      const redirectDelay = 3500; // 3.5 seconds
-      setTimeout(() => {
-        window.location.href = "https://www.raiseright.com/enroll";
-      }, redirectDelay);
-    });
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hatch PTO – RaiseRight Signup</title>
+<style>
+body{
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:#f6f8fb;
+  display:flex;justify-content:center;align-items:center;
+  height:100vh;margin:0;text-align:center;color:#003366;
+}
+.box{
+  background:#fff;padding:2rem 2.5rem;border-radius:1rem;
+  box-shadow:0 4px 18px rgba(0,0,0,0.08);max-width:420px;
+}
+h1{font-size:1.4rem;margin-bottom:.75rem}
+p{margin:.5rem 0;font-size:1rem}
+code{
+  background:#eef3fa;padding:.2rem .4rem;border-radius:4px;
+  font-weight:600;color:#003366;
+}
+button{
+  margin-top:.9rem;padding:.6rem 1.4rem;font-size:1rem;
+  background:#003366;color:#fff;border:none;border-radius:6px;cursor:pointer;
+}
+button:hover{background:#004080}
+</style>
+<script>
+const code="4691F82655677";
+async function copyAndGo(){
+  try{
+    await navigator.clipboard.writeText(code);
+    document.getElementById("status").textContent="✅ Code copied to clipboard!";
+  }catch{
+    document.getElementById("status").textContent="⚠️ Copy not supported, please copy manually.";
+  }
+  window.location.href="https://www.raiseright.com/enroll";
+}
+window.addEventListener("load",async()=>{
+  try{
+    await navigator.clipboard.writeText(code);
+    document.getElementById("status").textContent="✅ Code copied to clipboard!";
+  }catch{
+    document.getElementById("status").textContent="⚠️ Copy not supported, please copy manually.";
+  }
+});
+</script>
 </head>
 <body>
-  <div class="box">
-    <h1>Redirecting you to RaiseRight…</h1>
-    <p>Your Hatch PTO enrollment code is <code id="thecode">4691F82655677</code>.</p>
-    <p id="status">Attempting to copy to clipboard…</p>
-    <button onclick="copyCode()">Copy Code Again</button>
-    <p>If you are not redirected automatically, <a href="https://www.raiseright.com/enroll">click here</a>.</p>
-  </div>
+<div class="box">
+  <h1>Sign Up for RaiseRight</h1>
+  <p>Use the Hatch PTO enrollment code <code>4691F82655677</code>.</p>
+  <p id="status">Attempting to copy code to clipboard…</p>
+  <button onclick="copyAndGo()">Continue to RaiseRight →</button>
+</div>
 </body>
 </html>
