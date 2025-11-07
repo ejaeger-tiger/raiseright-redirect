@@ -22,41 +22,38 @@ code{
   font-weight:600;color:#003366;
 }
 button{
-  margin-top:.9rem;padding:.6rem 1.4rem;font-size:1rem;
+  margin-top:1rem;padding:.7rem 1.6rem;font-size:1rem;
   background:#003366;color:#fff;border:none;border-radius:6px;cursor:pointer;
 }
 button:hover{background:#004080}
 </style>
 <script>
 const code="4691F82655677";
-async function copyCode(){
+
+async function proceed(){
+  let copied=false;
   try{
     await navigator.clipboard.writeText(code);
-    document.getElementById("status").textContent="✅ Code copied to clipboard!";
-  }catch{
-    document.getElementById("status").textContent="⚠️ Copy not supported, please copy manually.";
+    copied=true;
+  }catch(e){
+    console.warn("Clipboard API not available:",e);
   }
-}
 
-// Chrome requires a click for clipboard access
-async function proceed(){
-  await copyCode();
-  document.getElementById("status").textContent+=" Redirecting in 2 seconds…";
+  const msg=document.getElementById("status");
+  msg.textContent=copied
+    ? "✅ Code copied! Redirecting in 2 seconds…"
+    : "⚠️ Copy not supported—please note or copy manually. Redirecting in 2 seconds…";
+
   setTimeout(()=>{window.location.href="https://www.raiseright.com/enroll";},2000);
 }
-
-window.addEventListener("load",()=>{
-  // Try automatic copy for browsers that allow it (Safari/iOS)
-  copyCode();
-});
 </script>
 </head>
 <body>
 <div class="box">
   <h1>Sign Up for RaiseRight</h1>
   <p>Use the Hatch PTO enrollment code <code>4691F82655677</code>.</p>
-  <p id="status">Attempting to copy code to clipboard…</p>
-  <button onclick="proceed()">Continue to RaiseRight →</button>
+  <p id="status">Click below to copy the code and continue.</p>
+  <button onclick="proceed()">Copy & Continue →</button>
 </div>
 </body>
 </html>
